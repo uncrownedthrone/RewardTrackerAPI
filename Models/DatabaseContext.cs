@@ -7,7 +7,10 @@ namespace RewardTrackerAPI.Models
 {
   public partial class DatabaseContext : DbContext
   {
-
+    public DbSet<Teacher> Teachers { get; set; }
+    public DbSet<Student> Students { get; set; }
+    public DbSet<Classroom> Classrooms { get; set; }
+    public DbSet<Reward> Rewards { get; set; }
     private string ConvertPostConnectionToConnectionString(string connection)
     {
       var _connection = connection.Replace("postgres://", String.Empty);

@@ -9,7 +9,7 @@ namespace RewardTrackerAPI.Models
   {
     public DbSet<Teacher> Teachers { get; set; }
     public DbSet<Student> Students { get; set; }
-    public DbSet<Classroom> Classrooms { get; set; }
+    public DbSet<Period> Periods { get; set; }
     public DbSet<Reward> Rewards { get; set; }
     private string ConvertPostConnectionToConnectionString(string connection)
     {

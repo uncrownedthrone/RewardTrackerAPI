@@ -11,48 +11,48 @@ namespace RewardTrackerAPI.Controllers
 {
   [Route("api/[controller]")]
   [ApiController]
-  public class ClassroomController : ControllerBase
+  public class PeriodController : ControllerBase
   {
     private readonly DatabaseContext db;
 
-    public ClassroomController(DatabaseContext context)
+    public PeriodController(DatabaseContext context)
     {
       db = context;
     }
 
     // GET: api/Classroom
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Classroom>>> GetClassrooms()
+    public async Task<ActionResult<IEnumerable<Period>>> GetPeriod()
     {
-      return await db.Classrooms.ToListAsync();
+      return await db.Periods.ToListAsync();
     }
 
     // GET: api/Classroom/5
     [HttpGet("{id}")]
-    public async Task<ActionResult<Classroom>> GetClassroom(int id)
+    public async Task<ActionResult<Period>> GetClassroom(int id)
     {
-      var classroom = await db.Classrooms.FindAsync(id);
+      var period = await db.Periods.FindAsync(id);
 
-      if (classroom == null)
+      if (period == null)
       {
         return NotFound();
       }
 
-      return classroom;
+      return period;
     }
 
     // PUT: api/Classroom/5
     // To protect from overposting attacks, please enable the specific properties you want to bind to, for
     // more details see https://aka.ms/RazorPagesCRUD.
     [HttpPut("{id}")]
-    public async Task<IActionResult> PutClassroom(int id, Classroom classroom)
+    public async Task<IActionResult> PutPeriod(int id, Period period)
     {
-      if (id != classroom.Id)
+      if (id != period.Id)
       {
         return BadRequest();
       }
 
-      db.Entry(classroom).State = EntityState.Modified;
+      db.Entry(period).State = EntityState.Modified;
 
       try
       {
@@ -60,7 +60,7 @@ namespace RewardTrackerAPI.Controllers
       }
       catch (DbUpdateConcurrencyException)
       {
-        if (!ClassroomExists(id))
+        if (!PeriodExists(id))
         {
           return NotFound();
         }
@@ -77,33 +77,33 @@ namespace RewardTrackerAPI.Controllers
     // To protect from overposting attacks, please enable the specific properties you want to bind to, for
     // more details see https://aka.ms/RazorPagesCRUD.
     [HttpPost]
-    public async Task<ActionResult<Classroom>> PostClassroom(Classroom classroom)
+    public async Task<ActionResult<Period>> PostPeriod(Period period)
     {
-      db.Classrooms.Add(classroom);
+      db.Periods.Add(period);
       await db.SaveChangesAsync();
 
-      return CreatedAtAction("GetClassroom", new { id = classroom.Id }, classroom);
+      return CreatedAtAction("GetPeriod", new { id = period.Id }, period);
     }
 
     // DELETE: api/Classroom/5
     [HttpDelete("{id}")]
-    public async Task<ActionResult<Classroom>> DeleteClassroom(int id)
+    public async Task<ActionResult<Period>> DeletePeriod(int id)
     {
-      var classroom = await db.Classrooms.FindAsync(id);
-      if (classroom == null)
+      var period = await db.Periods.FindAsync(id);
+      if (period == null)
       {
         return NotFound();
       }
 
-      db.Classrooms.Remove(classroom);
+      db.Periods.Remove(period);
       await db.SaveChangesAsync();
 
-      return classroom;
+      return period;
     }
 
-    private bool ClassroomExists(int id)
+    private bool PeriodExists(int id)
     {
-      return db.Classrooms.Any(e => e.Id == id);
+      return db.Periods.Any(e => e.Id == id);
     }
   }
 }

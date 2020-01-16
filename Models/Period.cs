@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace RewardTrackerAPI.Models
 {
-  public class Classroom
+  public class Period
   {
     public int Id { get; set; }
     public int PeriodNumber { get; set; }

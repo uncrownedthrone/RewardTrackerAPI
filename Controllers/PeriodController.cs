@@ -41,6 +41,13 @@ namespace RewardTrackerAPI.Controllers
       return period;
     }
 
+    [HttpGet("AllStudentsJoin/{Id}")]
+    public ActionResult<IEnumerable<Object>> GetPeriodStudents(int Id)
+    {
+      var students = db.Students.Where(w => w.PeriodId == Id);
+      return students.ToList();
+    }
+
     // PUT: api/Classroom/5
     // To protect from overposting attacks, please enable the specific properties you want to bind to, for
     // more details see https://aka.ms/RazorPagesCRUD.

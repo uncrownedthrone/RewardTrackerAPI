@@ -73,28 +73,10 @@ namespace RewardTrackerAPI.Controllers
       return NoContent();
     }
 
-    [HttpPut("Add/{Id}")]
-    public ActionResult<Int32> AddReward(int Id)
-    {
-      var student = db.Students.FirstOrDefault(f => f.Id == Id);
-      student.AddReward += 1;
-      db.SaveChanges();
-      return student.AddReward;
-    }
-
-    [HttpPut("Redeem/{Id}")]
-    public ActionResult<Int32> RedeemReward(int Id)
-    {
-      var student = db.Students.FirstOrDefault(f => f.Id == Id);
-      student.RedeemReward -= 1;
-      db.SaveChanges();
-      return student.RedeemReward;
-    }
-
     [HttpGet("AllRewards/{Id}")]
     public ActionResult<IEnumerable<Object>> GetRewards(int Id)
     {
-      var rewards = db.Rewards.Where(w => w.StudentId == Id);
+      var rewards = db.RewardRecords.Where(w => w.StudentId == Id);
       return rewards.ToList();
     }
 

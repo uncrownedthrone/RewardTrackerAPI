@@ -22,16 +22,16 @@ namespace RewardTrackerAPI.Controllers
 
     // GET: api/Reward
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Reward>>> GetRewards()
+    public async Task<ActionResult<IEnumerable<RewardRecord>>> GetRewards()
     {
-      return await db.Rewards.ToListAsync();
+      return await db.RewardRecords.ToListAsync();
     }
 
-    // GET: api/Reward/5
+    // GET: api/RewardRecord/5
     [HttpGet("{id}")]
-    public async Task<ActionResult<Reward>> GetReward(int id)
+    public async Task<ActionResult<RewardRecord>> GetReward(int id)
     {
-      var reward = await db.Rewards.FindAsync(id);
+      var reward = await db.RewardRecords.FindAsync(id);
 
       if (reward == null)
       {
@@ -45,14 +45,14 @@ namespace RewardTrackerAPI.Controllers
     // To protect from overposting attacks, please enable the specific properties you want to bind to, for
     // more details see https://aka.ms/RazorPagesCRUD.
     [HttpPut("{id}")]
-    public async Task<IActionResult> PutReward(int id, Reward reward)
+    public async Task<IActionResult> PutReward(int id, RewardRecord rewardRecord)
     {
-      if (id != reward.Id)
+      if (id != rewardRecord.Id)
       {
         return BadRequest();
       }
 
-      db.Entry(reward).State = EntityState.Modified;
+      db.Entry(rewardRecord).State = EntityState.Modified;
 
       try
       {
@@ -77,25 +77,25 @@ namespace RewardTrackerAPI.Controllers
     // To protect from overposting attacks, please enable the specific properties you want to bind to, for
     // more details see https://aka.ms/RazorPagesCRUD.
     [HttpPost]
-    public async Task<ActionResult<Reward>> PostReward(Reward reward)
+    public async Task<ActionResult<RewardRecord>> PostReward(RewardRecord rewardRecord)
     {
-      db.Rewards.Add(reward);
+      db.RewardRecords.Add(rewardRecord);
       await db.SaveChangesAsync();
 
-      return CreatedAtAction("GetReward", new { id = reward.Id }, reward);
+      return CreatedAtAction("GetReward", new { id = rewardRecord.Id }, rewardRecord);
     }
 
     // DELETE: api/Reward/5
     [HttpDelete("{id}")]
-    public async Task<ActionResult<Reward>> DeleteReward(int id)
+    public async Task<ActionResult<RewardRecord>> DeleteReward(int id)
     {
-      var reward = await db.Rewards.FindAsync(id);
+      var reward = await db.RewardRecords.FindAsync(id);
       if (reward == null)
       {
         return NotFound();
       }
 
-      db.Rewards.Remove(reward);
+      db.RewardRecords.Remove(reward);
       await db.SaveChangesAsync();
 
       return reward;
@@ -103,7 +103,7 @@ namespace RewardTrackerAPI.Controllers
 
     private bool RewardExists(int id)
     {
-      return db.Rewards.Any(e => e.Id == id);
+      return db.RewardRecords.Any(e => e.Id == id);
     }
   }
 }

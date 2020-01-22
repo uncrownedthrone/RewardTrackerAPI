@@ -1,7 +1,7 @@
-docker build -t sdg-sample-api-template .
+docker build -t reward-tracker-api-image .
 
-docker tag sdg-sample-api-template registry.heroku.com/sdg-sample-api-template/web
+docker tag reward-tracker-api-image registry.heroku.com/reward-tracker-api/web
 
-docker push registry.heroku.com/sdg-sample-api-template/web
+docker push registry.heroku.com/reward-tracker-api/web
 
-heroku container:release web -a sdg-sample-api-template
+heroku container:release web -a reward-tracker-api

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using RewardTrackerAPI.Models;
+using RewardTrackerAPI.ViewModels;
 
 namespace RewardTrackerAPI.Controllers
 {
@@ -77,12 +78,32 @@ namespace RewardTrackerAPI.Controllers
     // To protect from overposting attacks, please enable the specific properties you want to bind to, for
     // more details see https://aka.ms/RazorPagesCRUD.
     [HttpPost]
-    public async Task<ActionResult<RewardRecord>> PostReward(RewardRecord rewardRecord)
+    public async Task<ActionResult<RewardRecord>> CreateReward(RewardDetails vm)
     {
-      db.RewardRecords.Add(rewardRecord);
-      await db.SaveChangesAsync();
-
-      return CreatedAtAction("GetReward", new { id = rewardRecord.Id }, rewardRecord);
+      var student = db.Students.FirstOrDefaultAsync(st => st.Id == vm.StudentId);
+      if (student == null)
+      {
+        return NotFound();
+      }
+      else
+      {
+        var reward = new RewardRecord
+        {
+          Reason = vm.Reason,
+          RewardAmount = vm.RewardAmount,
+          StudentId = vm.StudentId
+        };
+        db.RewardRecords.Add(reward);
+        await db.SaveChangesAsync();
+        var rv = new RewardRecord
+        {
+          Id = reward.Id,
+          Reason = reward.Reason,
+          RewardAmount = reward.RewardAmount,
+          StudentId = reward.StudentId
+        };
+        return Ok(rv);
+      }
     }
 
     // DELETE: api/Reward/5

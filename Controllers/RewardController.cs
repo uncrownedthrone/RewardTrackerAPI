@@ -80,7 +80,8 @@ namespace RewardTrackerAPI.Controllers
     [HttpPost]
     public async Task<ActionResult<RewardRecord>> CreateReward(RewardDetails vm)
     {
-      var student = db.Students.FirstOrDefaultAsync(st => st.Id == vm.StudentId);
+      var student = await db.Students.FirstOrDefaultAsync(st => st.Id == vm.StudentId);
+      var teacher = await db.Teachers.FirstAsync();
       if (student == null)
       {
         return NotFound();
@@ -91,8 +92,10 @@ namespace RewardTrackerAPI.Controllers
         {
           Reason = vm.Reason,
           RewardAmount = vm.RewardAmount,
-          StudentId = vm.StudentId
+          StudentId = vm.StudentId,
+          TeacherId = teacher.Id
         };
+        Console.WriteLine($"---{reward.TeacherId}");
         db.RewardRecords.Add(reward);
         await db.SaveChangesAsync();
         var rv = new RewardRecord
@@ -102,7 +105,7 @@ namespace RewardTrackerAPI.Controllers
           RewardAmount = reward.RewardAmount,
           StudentId = reward.StudentId
         };
-        return Ok(rv);
+        return Ok(reward);
       }
     }
 

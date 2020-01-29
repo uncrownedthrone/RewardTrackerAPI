@@ -1,28 +1,20 @@
-# Defualt Template for SDG .NET Course
+# Capstone - Reward Tracker
+## Deployed on Netlify: https://reward-tracker-justin.netlify.com
 
-This is the default template for a simple .NET Core Web API. This template has:
+I have created a reward tracking system to use for the distribution and tracking of student rewards in schools. Both teachers and students will have access to this system. The teacher will be able to create periods, add students, and add/redeem points. The student will be able to check their points balances and see the history of when they received and redeemed their points.
 
-- CORS Enabled
-- Swagger
-- Postgres & EF Core
-- Ready for Docker Deployment
+My wife is a high school English teacher whose school has a reward system where any teacher can give “points” to students as a reward for good behavior. The student can then redeem the points from any teacher for a special privilege, such as five minutes of using their phone at the end of a class or adding points to their overall grade.
 
-## TODO:
+The current tracking system they use is clunky, unintuitive, and is only available on the teacher's desktop computer. Further, the actual tracking of student rewards is not done automatically. Therefore, I created a responsive reward system tracker that can be used on a mobile device, tablet, or desktop that will automatically record current points and display a history. This enables teachers and students to pull up real-time data about their rewards and do so wherever they may be on campus.
 
-- Make this in into a template
+![p5-5](https://user-images.githubusercontent.com/52833074/73208837-1e7f4f80-4115-11ea-82f4-bfba4d954292.jpg)
 
-to use:
+Technologies Used:
 
-- [ ] Update your database name in `DatabaseContext.cs`
-
-to Deploy to heroku:
-
-- [ ] create a web app on heroku, make sure to have the CLI downloaded, installed, logged in and be logged into the container via heroku.
-- [ ] Update your `dockerfile` to use your `*.dll` file instead of `dotnet-sdg-template.dll`
-- [ ] Update the deploy script:
-  - [ ] change `sdg-template-image` to `your-project-name-image`
-  - [ ] change `heroku-web-app` to your web app name on heroku
-
-## PROTIP:
-
-When you are complete with the project and have turned it in to your instructor, update this read me with details about the assignment.
+- React.js
+- React Router
+- C#
+- PostgreSQL
+- ASP.NET Core
+- HTML5
+- CSS

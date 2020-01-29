@@ -1,7 +1,8 @@
 # Capstone - Reward Tracker API
 ## Deployed on Heroku: https://reward-tracker-api.herokuapp.com/index.html
 
-**Note: This is the back-end API for my capstone. To see the front-end, please visit https://github.com/uncrownedthrone/reward-tracker**
+**Note: This is the back-end API for my capstone.** 
+**To see the front-end, please visit https://github.com/uncrownedthrone/reward-tracker**
 
 I have created a reward tracking system to use for the distribution and tracking of student rewards in schools. Both teachers and students will have access to this system. The teacher will be able to create periods, add students, and add/redeem points. The student will be able to check their points balances and see the history of when they received and redeemed their points.
 
